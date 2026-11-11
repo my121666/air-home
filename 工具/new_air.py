@@ -9,6 +9,14 @@
 import os
 import shutil
 import sys
+# 英文 Windows 的终端是 cp1252，编不出 ✅ 这类字符会直接崩（CI 上撞过）。
+# 这里只把编不出的字符降级成 ?，不改编码，中文环境照旧。
+try:
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
+except Exception:
+    pass
+
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(os.path.dirname(HERE), "模板", "空包")

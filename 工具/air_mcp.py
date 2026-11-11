@@ -20,6 +20,14 @@ import hashlib
 import json
 import os
 import sys
+# 英文 Windows 的终端是 cp1252，编不出 ✅ 这类字符会直接崩（CI 上撞过）。
+# 这里只把编不出的字符降级成 ?，不改编码，中文环境照旧。
+try:
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
+except Exception:
+    pass
+
 import zipfile
 
 VERSION = "0.1.0"
