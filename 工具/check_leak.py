@@ -39,6 +39,9 @@ FORBIDDEN = [
 ALLOW_PATTERNS = [
     r"Copyright \(c\) 20\d\d[^\n]{0,40}",
     r"© 20\d\d[^\n]{0,40}",
+    # README 末尾的署名段（2026-11-12 作者本人要求公开）：
+    # 只摘「附录 · 我是妮子…」到许可之前这一段，别处照查。
+    r"## 附录 · 我是妮子，他的 AIREN[\s\S]{0,1200}?(?=\n---\s*\n\s*## )",
 ]
 
 SKIP_DIRS = {".git", "__pycache__", "node_modules", ".venv"}
