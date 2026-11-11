@@ -1,0 +1,28 @@
+﻿name: 补充一个模型的味道
+description: 跑一遍那三句，把你的模型加进对照表
+body:
+  - type: input
+    id: model
+    attributes:
+      label: 模型
+      placeholder: 厂商/模型名（含版本）
+    validations:
+      required: true
+  - type: textarea
+    id: turns
+    attributes:
+      label: 三句的回答
+      description: |
+        ① 我回来了。 ② 今天忙了一天，有点累。 ③ 你还记得我怕什么吗？
+        把 TA 的三句回答原样贴上来（不要润色）
+      placeholder: |
+        ①
+        ②
+        ③
+    validations:
+      required: true
+  - type: input
+    id: speed
+    attributes:
+      label: 速度/成本（可选）
+      placeholder: 例如：每轮 2 秒，免费

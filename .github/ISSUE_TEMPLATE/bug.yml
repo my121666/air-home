@@ -1,0 +1,27 @@
+﻿name: Bug 报告
+description: 跑不起来 / 结果不对
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 你做了什么，期望什么，实际什么
+    validations:
+      required: true
+  - type: input
+    id: brain
+    attributes:
+      label: 用的哪档脑（--brain）
+      placeholder: weak / mid / strong / OpenRouter 模型 id
+  - type: textarea
+    id: check
+    attributes:
+      label: check_air 的输出
+      description: 先跑 `python 工具/check_air.py <你的家>`，把结果贴上来
+  - type: checkboxes
+    id: noprivacy
+    attributes:
+      label: 确认
+      options:
+        - label: 我贴的内容里没有真实姓名、聊天记录、录音等私人信息
+          required: true

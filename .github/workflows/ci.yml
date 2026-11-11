@@ -1,0 +1,30 @@
+﻿name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.10", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: 语法检查
+        run: python -m py_compile 工具/air_shell.py 工具/check_air.py 工具/new_air.py 工具/check_leak.py 工具/air_pack.py 工具/air_move.py 工具/air_mcp.py
+
+      - name: 出门自检（不许夹带私人内容）
+        run: python 工具/check_leak.py . --strict
+
+      - name: 离线测试（不需要任何 key）
+        run: python -m unittest discover -s tests -v
